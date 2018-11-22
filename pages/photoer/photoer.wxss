@@ -1,4 +1,5 @@
 /* pages/photoer/photoer.wxss */
+
 page {
     display: flex;
     width: 100%;
@@ -16,31 +17,40 @@ page {
     background: white;
     flex-direction: column;
     justify-content: center;
-    align-content: center;
 }
+
 .coverImgView {
     width: 40%;
     height: 40%;
     align-self: center;
 }
+
 .coverTipView {
+    display: flex;
+    width: 40%;
     align-self: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
 .receiptTable {
+    display: flex;
     border: 1px solid green;
     left: 4%;
     top: 4%;
     width: 92%;
     height: 80%;
-    align-self: center;  
+    align-self: center;
     z-index: 10010;
     margin-top: 4%;
     box-shadow: 5px 1px 5px 1px green;
-    border-radius: 5px;
+    border-radius: 9px;
+    flex-direction: column;
 }
 
 /*  小程序默认的 display 属性的数值不是 flex，需要显示设置下，不然有点属性不生效 */
+
 .btnLayout {
     display: flex;
     flex-direction: row;
@@ -59,13 +69,77 @@ page {
 }
 
 .buttonTv {
-    
 }
 
 .companyTtile {
-    font-size: 15px;
+    font-size: 38rpx;
+    align-self: center;
 }
 
 .companyTtileEng {
-    font-size: 15px;
+    margin-top: 20rpx;
+    width: 100%;
+    text-align: center;
+    font-size: 28rpx;
+}
+
+.divderStyle {
+    height: 1px;
+    width: 95%;
+    align-self: center;
+    background-color: #1aac19;
+}
+
+.customerStyle {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: flex-end;
+    font-size: 25rpx;
+    margin-left: 25rpx;
+}
+
+.customerNameEt {
+    display: flex;
+    border-bottom: 1px solid #1aac19;
+    width: 45%;
+    margin-bottom: 5rpx;
+    padding-bottom: 0px;
+
+}
+
+.bossLayout {
+    display: flex;
+    flex-direction: column;
+}
+
+.penStyle {
+    width: 60rpx;
+    height: 60rpx;
+    display: inline-flex;
+    margin-left: 30rpx;
+}
+
+.orderDataStyle {
+    font-size: 25rpx;
+    display: flex;
+    flex: 1;
+    margin-bottom: 10rpx;
+    flex-direction: row;
+    align-items: center;
+}
+
+.orderDataTitleStyle {
+    text-align:left;
+    margin-left: 8rpx;
+}
+
+.dateLayout {
+    flex: 1;
+    display: flex;
+    
+    flex-direction: column;
+    justify-content: flex-end;
+    align-self: flex-start;
+    margin-left: 50rpx;
 }

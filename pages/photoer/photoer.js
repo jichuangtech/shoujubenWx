@@ -12,6 +12,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        orderDate:"2018-01-01",
+        orderDateCN: "2018年1月1日",
         isShowCanvas: false,
         isEditOrder: false,
         tableWidth: 0,
@@ -60,16 +62,54 @@ Page({
     },
 
     /**
+     * 当时间选择器变化的时候
+     */
+    onDateChange: function(event) {
+        console.log(" order date change now: " + event.detail.value);
+        let that = this;
+        this.setData({
+            orderDate: event.detail.value,
+            orderDateCN: that.getCurrDateCN(event.detail.value)
+        })
+    },
+
+    initCurrDate: function() {
+        let date = new Date();
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let dateStr = year + "-" + month + "-" + day;
+
+        console.log(" getCurrDate dateStr: " + dateStr)
+        return dateStr;
+    },
+
+    getCurrDateCN: function(currDate) {
+        let dateArr = currDate.split('-');
+        console.log(" getCurrDateCN : " + dateArr);
+
+        if(dateArr != null && dateArr.length == 3) {
+            return dateArr[0] + "年" + dateArr[1] + "月" + dateArr[2] + "日";
+        } else {
+            return this.data.orderData;
+        }
+        
+    },
+
+    /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function() {
         var that = this;
+        let orderDate = that.initCurrDate();
         wx.getSystemInfo({
             success: function(res) {
                 console.log(" 屏幕信息: " + JSON.stringify(res))
                 that.setData({
                     tableWidth: res.windowWidth,
                     tableHegiht: res.screenHeight,
+                    orderDate: orderDate,
+                    orderDateCN: that.getCurrDateCN(orderDate)
                 });
             }
         });

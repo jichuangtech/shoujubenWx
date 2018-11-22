@@ -1,0 +1,25 @@
+/* components/teamInfoItemText/teamInfoItemText.wxss */
+
+.rootView {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 6rpx;
+}
+
+/* 设置了文字不能换行 */
+.titleText {
+    text-align: left;
+    flex-wrap: nowrap;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+
+.valueText {
+    text-align: left;
+}
+
+.text {
+    font-family: PingFangSC-regular;
+    color: rgba(16, 16, 16, 1);
+    font-size: 20rpx;
+}

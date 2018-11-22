@@ -5,17 +5,68 @@
 <!-- 用来隐藏画布的，并且提供'收据生成中'提示 -->
 <cover-view class='coverView' style="display:{{isShowCanvas?'flex':'none'}}">
     <cover-image class="coverImgView" src='../../images/shoujuxiaopiao.png'></cover-image>
-    <cover-view class='coverTipView'>收据生成中...</cover-view>
+    <cover-view class='coverTipView'>
+        <cover-view>收据生成中...</cover-view>
+        <cover-image class="penStyle" src='../../images/qianbi.png'></cover-image>
+    </cover-view>
+
 </cover-view>
 
 <!-- 收据单表格 -->
-<view class='receiptTable' style="visibility:{{isShowCanvas?'hidden':'visible'}}">
-    <view class='companyTtile'>
-        兴 和 纺 织
+<view class='receiptTable' style="visibility:{{isShowCanvas? 'hidden':'visible'}}">
+
+    <!-- 顶部公司信息区域 -->
+    <view style='background:white; display:flex; flex:1.2;flex-direction: row;'>
+
+        <!-- 左边 -->
+        <view style='display:flex; width:50%;flex-direction: column;'>
+
+            <view style='display:flex;width:100%;height:20%;flex-direction:row ;margin-top:18rpx; margin-left:15rpx;'>
+                <image style="width:100rpx;height:80rpx;align-self:center;" src='../../images/shoujuxiaopiao.png'></image>
+                <view class='companyTtile'>
+                    兴 和 纺 织
+                </view>
+            </view>
+
+            <view class='companyTtileEng'>
+                XING HE TEXTILE
+            </view>
+
+            <!-- 客户信息 -->
+            <view class='customerStyle'>
+
+                <view style='display:flex;flex-direction: row;align-items: center'>
+                    <icon style="" type="warn" size="10" color="rgb(26,172,25)" />
+                    <label style='display:flex;flex;1;margin-left: 8rpx;'>客户名称：</label>
+                    <input class='customerNameEt' placeholder="" placeholder-style='text-align: center;' type='text' />
+                </view>
+
+            </view>
+        </view>
+
+        <!-- 右边 -->
+        <view class='bossLayout' style='display:flex; width:50%'>
+            <bossInfoItemText style="margin-top:18rpx" title="地址：" value="广州市珠海区逸景路康盛轻纺城后街A117" />
+            <bossInfoItemText title="手机：" value="18026260054" />
+            <bossInfoItemText title="建行：" value="6227 0018 2297 0280 284" />
+            <bossInfoItemText title="农行：" value="6228 4800 6858 6382 175" />
+            <bossInfoItemText title="户名：" value="黄生根" />
+            <!-- 日期选择 -->
+            <picker mode="date" class="dateLayout" value="{{orderDate}}" bindchange="onDateChange" start="2018-01-01">
+                <view class="picker orderDataStyle">
+                    <icon style="" type="warn" size="10" color="rgb(26,172,25)" />
+                    <text class="orderDataTitleStyle">日期：</text> {{orderDateCN}}
+                </view>
+            </picker>
+        </view>
+
     </view>
 
-    <view class='companyTtileEng'>
-        XING HE TEXTILE
+    <!-- 中间分割线 -->
+    <view class='divderStyle'></view>
+
+    <!-- 下面的数据区域 -->
+    <view style='background:white; display:flex; flex:3'>
     </view>
 
 </view>

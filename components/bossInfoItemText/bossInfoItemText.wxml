@@ -1,0 +1,4 @@
+<view class='rootView'>
+    <text catchtap='onTitleClick' class='titleText text'>{{title}}</text>
+    <text class='valueText text'>{{value}}</text>
+</view>

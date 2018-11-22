@@ -2,3 +2,15 @@
 page {
     height: 100%;
 }
+
+.mainTextColor {
+    color: #1AAC19; 
+}
+
+.mainBgColor {
+    color: #1AAC19; 
+}
+
+.mainTextSize {
+    font-size: 33rpx;
+}
