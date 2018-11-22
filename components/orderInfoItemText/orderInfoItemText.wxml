@@ -1,0 +1,16 @@
+<view class='rootView'>
+    <text class='titleText'>{{t1}}</text>
+    <text class='titleText'>{{t2}}</text>
+    <text class='titleText'>{{t3}}</text>
+    <text class='titleText'>{{t4}}</text>
+    <text class='titleText'>{{t5}}</text>
+    <text class='titleText'>{{t6}}</text>
+    <text class='titleText'>{{t7}}</text>
+    <text class='titleText'>{{t8}}</text>
+    <text class='titleText'>{{t9}}</text>
+    <text class='titleText'>{{t10}}</text>
+    <text class='titleText'>{{t11}}</text>
+    <text class='titleText'>{{t12}}</text>
+    <text class='titleText'>{{t13}}</text>
+    <text class='titleText'>{{t14}}</text>
+</view>

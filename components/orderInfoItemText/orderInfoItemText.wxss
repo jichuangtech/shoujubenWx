@@ -1,0 +1,14 @@
+/* components/orderInfoItemText.wxss */
+
+.rootView {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15rpx;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.titleText {
+    font-size: 20rpx;
+    text-align: center;
+}
