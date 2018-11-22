@@ -23,10 +23,10 @@
 
 
 <view class='btnLayout'>
-    <button class="button" type="primary" catchtap='save' disabled='{{ isEditOrder || isShowCanvas}}' loading='{{isEditOrder}}'>
+    <button class="btn" plain="true" type="primary" catchtap='save' disabled='{{ isEditOrder || isShowCanvas}}' loading='{{isEditOrder}}'>
         <text class='buttonTv'>新增货品</text>
     </button>
-    <button class="button" type="primary" catchtap='preview' disabled='{{isEditOrder || isShowCanvas}}' loading='{{isShowCanvas}}'>
+    <button class="btn" plain="true" type="primary" catchtap='preview' disabled='{{isEditOrder || isShowCanvas}}' loading='{{isShowCanvas}}'>
         <text class='buttonTv'>预览收据</text>
     </button>
 </view>

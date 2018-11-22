@@ -50,17 +50,16 @@ page {
     justify-content: space-between;
 }
 
-.button {
-    display: inline-flex;
+.btn {
+    display: flex;
     width: 35%;
-    text-align: center;
     flex-direction: row;
-    justify-content: right;
-    background-color: black;
+    justify-content: center;
+    align-content: center;
 }
 
 .buttonTv {
-    background-color: red;
+    
 }
 
 .companyTtile {
