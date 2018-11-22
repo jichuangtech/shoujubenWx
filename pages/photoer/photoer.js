@@ -12,7 +12,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        
+
         showOrderEditModal: false,
         orderDate:"2018-01-01",
         orderDateCN: "2018年1月1日",
@@ -373,9 +373,11 @@ Page({
                         current: res.tempFilePath, // 当前显示图片的http链接
                         urls: [res.tempFilePath], // 需要预览的图片http链接列表
                         complete: function () {
-                            that.setData({
-                                isShowCanvas: false,
-                            })
+                            setTimeout(function() {
+                                that.setData({
+                                    isShowCanvas: false,
+                                })
+                            }, 200)
                         }
                     })
                 }, 630)
