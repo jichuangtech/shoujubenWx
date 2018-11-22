@@ -77,7 +77,7 @@
 
 
 <!-- 操作按钮区域 -->
-<view class='btnLayout'>
+<view class='btnLayout' style="visibility:{{isShowCanvas? 'hidden':'visible'}}">
     <button class="btn" plain="true" type="primary" catchtap='save' disabled='{{ isEditOrder || isShowCanvas}}' loading='{{isEditOrder}}'>
         <text class='buttonTv'>新增货品</text>
     </button>
