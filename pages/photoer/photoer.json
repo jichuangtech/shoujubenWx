@@ -3,6 +3,7 @@
     "navigationBarBackgroundColor": "#1AAC19",
     "navigationBarTextStyle": "white",
     "usingComponents": {
-        "bossInfoItemText": "../../components/bossInfoItemText/bossInfoItemText"
+        "bossInfoItemText": "../../components/bossInfoItemText/bossInfoItemText",
+        "orderInfoItemText": "../../components/orderInfoItemText/orderInfoItemText"
     }
 }

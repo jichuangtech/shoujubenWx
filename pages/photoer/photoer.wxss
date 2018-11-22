@@ -105,7 +105,6 @@ page {
     width: 45%;
     margin-bottom: 5rpx;
     padding-bottom: 0px;
-
 }
 
 .bossLayout {
@@ -130,16 +129,27 @@ page {
 }
 
 .orderDataTitleStyle {
-    text-align:left;
+    text-align: left;
     margin-left: 8rpx;
 }
 
 .dateLayout {
     flex: 1;
     display: flex;
-    
     flex-direction: column;
     justify-content: flex-end;
     align-self: flex-start;
     margin-left: 50rpx;
+}
+
+.orderLayout {
+    background: white;
+    display: flex;
+    flex: 3;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderInfoItemStyle{
+    width: 95%;
 }

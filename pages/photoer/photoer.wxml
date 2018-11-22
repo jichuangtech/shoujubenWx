@@ -66,7 +66,25 @@
     <view class='divderStyle'></view>
 
     <!-- 下面的数据区域 -->
-    <view style='background:white; display:flex; flex:3'>
+    <view class='orderLayout'>
+        <!-- 表头 -->
+        <orderInfoItemText 
+            class="orderInfoItemStyle"
+            t1="货名"
+            t2="颜色"
+            t3="1"
+            t4="2"
+            t5="3"
+            t6="4"
+            t7="5"
+            t8="6"
+            t9="7"
+            t10="8"
+            t11="9"
+            t12="数量"
+            t13="单价"
+            t14="金额"
+            />
     </view>
 
 </view>
