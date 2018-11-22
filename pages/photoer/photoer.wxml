@@ -12,6 +12,8 @@
 
 </cover-view>
 
+
+
 <!-- 收据单表格 -->
 <view class='receiptTable' style="visibility:{{isShowCanvas? 'hidden':'visible'}}">
 
@@ -68,29 +70,13 @@
     <!-- 下面的数据区域 -->
     <view class='orderLayout'>
         <!-- 表头 -->
-        <orderInfoItemText 
-            class="orderInfoItemStyle"
-            t1="货名"
-            t2="颜色"
-            t3="1"
-            t4="2"
-            t5="3"
-            t6="4"
-            t7="5"
-            t8="6"
-            t9="7"
-            t10="8"
-            t11="9"
-            t12="数量"
-            t13="单价"
-            t14="金额"
-            />
+        <orderInfoItemText class="orderInfoItemStyle" t1="货名" t2="颜色" t3="1" t4="2" t5="3" t6="4" t7="5" t8="6" t9="7" t10="8" t11="9" t12="数量" t13="单价" t14="金额" />
     </view>
 
 </view>
 
 
-
+<!-- 操作按钮区域 -->
 <view class='btnLayout'>
     <button class="btn" plain="true" type="primary" catchtap='save' disabled='{{ isEditOrder || isShowCanvas}}' loading='{{isEditOrder}}'>
         <text class='buttonTv'>新增货品</text>
@@ -98,4 +84,45 @@
     <button class="btn" plain="true" type="primary" catchtap='preview' disabled='{{isEditOrder || isShowCanvas}}' loading='{{isShowCanvas}}'>
         <text class='buttonTv'>预览收据</text>
     </button>
+</view>
+
+<!-- 下面是定义对话框 ，主要是通过 z-index 来提供对话框的层级 -->
+
+<!-- 高斯模糊的效果 -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove wx:if="{{showOrderEditModal}}"></view>
+
+<!-- 订单编辑对话框 -->
+<view class="modal-dialog" wx:if="{{showOrderEditModal}}" catchtouchmove>
+
+    <!-- 对话框头部 -->
+    <view class="modal-header">
+        <image class="penStyle" src='../../images/qianbi.png'></image>
+        <text class='model-header-title'>{{orderDialogTitle}}</text>
+    </view>
+    <!-- 分割线 -->
+    <view class='divderStyle'></view>
+
+    <!-- 对话框内容 -->
+    <view class="modal-content">
+        <orderInfoEditText title="货名" />
+        <orderInfoEditText title="颜色" />
+        <orderInfoEditText inputType="digit" title="1" />
+        <orderInfoEditText inputType="digit" title="2" />
+        <orderInfoEditText inputType="digit" title="3" />
+        <orderInfoEditText inputType="digit" title="4" />
+        <orderInfoEditText inputType="digit" title="5" />
+        <orderInfoEditText inputType="digit" title="6" />
+        <orderInfoEditText inputType="digit" title="7" />
+        <orderInfoEditText inputType="digit" title="8" />
+        <orderInfoEditText inputType="digit" title="9" />
+        <orderInfoEditText inputType="digit" title="数量" />
+        <orderInfoEditText inputType="digit" title="单价" />
+        <orderInfoEditText inputType="digit" title="金额" />
+    </view>
+
+    <!-- 对话框尾部 -->
+    <view class="modal-footer">
+        <view class="btn-cancel" bindtap="onDialogCancel" data-status="cancel">取消</view>
+        <view class="btn-confirm" bindtap="onDialogConfirm" data-status="confirm">确定</view>
+    </view>
 </view>

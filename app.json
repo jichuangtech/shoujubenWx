@@ -1,6 +1,7 @@
 {
     "pages": [
-        "pages/photoer/photoer"
+        "pages/photoer/photoer",
+        "components/orderInfoEditText/orderInfoEditText"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -8,5 +9,4 @@
         "navigationBarTitleText": "WeChat",
         "navigationBarTextStyle": "white"
     }
-    
 }

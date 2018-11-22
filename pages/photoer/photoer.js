@@ -12,6 +12,8 @@ Page({
      * 页面的初始数据
      */
     data: {
+        
+        showOrderEditModal: false,
         orderDate:"2018-01-01",
         orderDateCN: "2018年1月1日",
         isShowCanvas: false,
@@ -342,21 +344,17 @@ Page({
     },
 
     save: function() {
-        let that = this;
-
         this.setData({
-            isEditOrder: true,
-        }, function() {
-            setTimeout(function(){
-                that.setData({
-                    isEditOrder: false,
-                })
-            } , 2000)
+            showOrderEditModal: true,
+            orderDialogTitle:"新增货品"
         })
+    },
 
-        wx.showToast({
-            title: '新增货品',
-        })  
+    edit: function () {
+        this.setData({
+            showOrderEditModal: true,
+            orderDialogTitle: "修改货品"
+        })
     },
 
     /**
@@ -481,5 +479,23 @@ Page({
      */
     onShareAppMessage: function() {
 
+    }, 
+
+    onDialogCancel :function() {
+        this.setData({
+            showOrderEditModal: false
+        });
+    },
+
+    onDialogConfirm: function() {
+        /**
+         *  (1)关闭对话框
+         * （2）保存新数据
+         */
+        this.setData({
+            showOrderEditModal: false
+        });
     }
+
+
 })

@@ -4,6 +4,7 @@
     "navigationBarTextStyle": "white",
     "usingComponents": {
         "bossInfoItemText": "../../components/bossInfoItemText/bossInfoItemText",
-        "orderInfoItemText": "../../components/orderInfoItemText/orderInfoItemText"
+        "orderInfoItemText": "../../components/orderInfoItemText/orderInfoItemText",
+        "orderInfoEditText": "../../components/orderInfoEditText/orderInfoEditText"
     }
 }

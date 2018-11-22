@@ -1,0 +1,22 @@
+
+.rootView {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10rpx;
+    align-items: center;
+}
+
+.titleStyle {
+    color: #1AAC19;
+    width: 20%;
+    font-size: 30rpx;
+    text-align: right;
+    margin-left: 15rpx;
+    margin-right: 15rpx;
+}
+
+.editTextStyle {
+    border: 1px solid #1AAC19;
+    border-radius: 10rpx;
+    padding-left: 15rpx;
+}

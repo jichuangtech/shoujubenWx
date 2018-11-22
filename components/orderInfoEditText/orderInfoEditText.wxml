@@ -1,0 +1,4 @@
+<view class='rootView'>
+    <text class='titleStyle'>{{title}}</text>
+    <input type="{{inputType}}" class='editTextStyle'>{{value}}</input>
+</view>
