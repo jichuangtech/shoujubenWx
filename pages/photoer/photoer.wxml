@@ -1,0 +1,32 @@
+<!-- 绘制收据单的画板 -->
+<canvas style="width:100%;height: 80%;background:white;position:fixed;display:{{isShowCanvas ?'flex':'none'}}" canvas-id="shareFrends">
+</canvas>
+
+<!-- 用来隐藏画布的，并且提供'收据生成中'提示 -->
+<cover-view class='coverView' style="display:{{isShowCanvas?'flex':'none'}}">
+    <cover-image class="coverImgView" src='../../images/shoujuxiaopiao.png'></cover-image>
+    <cover-view class='coverTipView'>收据生成中...</cover-view>
+</cover-view>
+
+<!-- 收据单表格 -->
+<view class='receiptTable' style="visibility:{{isShowCanvas?'hidden':'visible'}}">
+    <view class='companyTtile'>
+        兴 和 纺 织
+    </view>
+
+    <view class='companyTtileEng'>
+        XING HE TEXTILE
+    </view>
+
+</view>
+
+
+
+<view class='btnLayout'>
+    <button class="button" type="primary" catchtap='save' disabled='{{ isEditOrder || isShowCanvas}}' loading='{{isEditOrder}}'>
+        <text class='buttonTv'>新增货品</text>
+    </button>
+    <button class="button" type="primary" catchtap='preview' disabled='{{isEditOrder || isShowCanvas}}' loading='{{isShowCanvas}}'>
+        <text class='buttonTv'>预览收据</text>
+    </button>
+</view>

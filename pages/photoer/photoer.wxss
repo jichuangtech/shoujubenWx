@@ -1,0 +1,72 @@
+/* pages/photoer/photoer.wxss */
+page {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.coverView {
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    background: white;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+.coverImgView {
+    width: 40%;
+    height: 40%;
+    align-self: center;
+}
+.coverTipView {
+    align-self: center;
+}
+
+.receiptTable {
+    border: 1px solid green;
+    left: 4%;
+    top: 4%;
+    width: 92%;
+    height: 80%;
+    align-self: center;  
+    z-index: 10010;
+    margin-top: 4%;
+    box-shadow: 5px 1px 5px 1px green;
+    border-radius: 5px;
+}
+
+/*  小程序默认的 display 属性的数值不是 flex，需要显示设置下，不然有点属性不生效 */
+.btnLayout {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    width: 93%;
+    margin-top: 4%;
+    justify-content: space-between;
+}
+
+.button {
+    display: inline-flex;
+    width: 35%;
+    text-align: center;
+    flex-direction: row;
+    justify-content: right;
+    background-color: black;
+}
+
+.buttonTv {
+    background-color: red;
+}
+
+.companyTtile {
+    font-size: 15px;
+}
+
+.companyTtileEng {
+    font-size: 15px;
+}

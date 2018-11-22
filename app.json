@@ -1,0 +1,12 @@
+{
+    "pages": [
+        "pages/photoer/photoer"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#3F51B5",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "white"
+    }
+    
+}
