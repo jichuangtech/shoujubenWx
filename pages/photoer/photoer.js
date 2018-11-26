@@ -357,20 +357,20 @@ Page({
         //【10】金额合计大写
         let x10_1 = x4 + 10;
         let y10_1 = y9_1 + MARGIN_TOP_BELOW_DIVIDER;
-        ctx.fillText("金额合计大写：壹万伍仟", x10_1, y10_1)
+        ctx.fillText("金额合计大写：" + this.data.bigLetterTotal, x10_1, y10_1)
 
         let x10_2 = verticalX2 + 10;
         let y10_2 = y10_1;
-        ctx.fillText("¥：15000", x10_2, y10_2)
+        ctx.fillText("¥：" + this.data.total, x10_2, y10_2)
 
         //【11】欠款信息
         let x11_1 = x10_1;
         let y11_1 = y9_2 + MARGIN_TOP_BELOW_DIVIDER;
-        ctx.fillText("欠款¥：20000", x11_1, y11_1)
+        ctx.fillText("欠款¥：" + this.data.prevDebt, x11_1, y11_1)
 
         let x11_2 = verticalX2 + 10;
         let y11_2 = y11_1;
-        ctx.fillText("累计后欠¥：15000", x11_2, y11_2)
+        ctx.fillText("累计后欠¥：" + this.data.totalDebt, x11_2, y11_2)
 
         // 【12】绘制整个外围的边框，宽度使用手机的宽度，高度根据表格数据的大小来增加   
         ctx.setStrokeStyle('black')
