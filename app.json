@@ -1,7 +1,8 @@
 {
     "pages": [
         "pages/photoer/photoer",
-        "components/orderInfoEditText/orderInfoEditText"
+        "components/orderInfoEditText/orderInfoEditText",
+        "components/vitalIcon/vitalIcon"
     ],
     "window": {
         "backgroundTextStyle": "light",

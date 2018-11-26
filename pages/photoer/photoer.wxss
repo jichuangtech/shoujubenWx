@@ -87,6 +87,38 @@ page {
     background-color: #1aac19;
 }
 
+.totalTable {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 95%;
+    height: 20%;
+    margin-top:8%
+}
+
+.totalTableRow {
+    width: 100%;
+    height:50%;
+    display: flex;
+    flex-direction: row;
+}
+
+.totalTableTd {
+    display: flex;
+    padding-left: 10rpx;
+    font-size: 23rpx;
+    flex-direction: row;
+    align-items: center;
+}
+
+.divderLightStyle {
+    display: flex;
+    height: 1px;
+    width: 95%;
+    background-color: #19fa9c;
+    margin-left: 2.5%;
+}
+
 .customerStyle {
     display: flex;
     flex: 1;
@@ -98,7 +130,7 @@ page {
 
 .customerNameEt {
     display: flex;
-    border-bottom: 1px solid #1aac19;
+    border-bottom: 1rpx solid black;
     width: 45%;
     margin-bottom: 5rpx;
     padding-bottom: 0px;
@@ -140,15 +172,22 @@ page {
 }
 
 .orderLayout {
-    background: white;
     display: flex;
     flex: 3;
     flex-direction: column;
     align-items: center;
 }
 
+.orderItemScrollView {
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .orderInfoItemStyle{
     width: 95%;
+    margin-bottom: 10rpx
 }
 
 
@@ -187,7 +226,7 @@ page {
     line-height: 70rpx;
     margin-top: 66rpx;
     padding-bottom: 40rpx;
-    justify-content: center;
+    justify-content: space-around;
 }
 /* 对话框头部 */
 .modal-header {
@@ -246,4 +285,13 @@ page {
     margin-top: 40rpx;
 }
 
+.totalInput {
+    border-bottom: 1rpx solid black;
+    margin-right: 10rpx;
+    flex: 1;
+    display: flex;
+}
 
+.totalIcon {
+    margin-right: 5rpx;
+}

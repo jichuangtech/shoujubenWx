@@ -40,7 +40,7 @@
                 <view style='display:flex;flex-direction: row;align-items: center'>
                     <icon style="" type="warn" size="10" color="rgb(26,172,25)" />
                     <label style='display:flex;flex;1;margin-left: 8rpx;'>客户名称：</label>
-                    <input class='customerNameEt' placeholder="" placeholder-style='text-align: center;' type='text' />
+                    <input class='customerNameEt' placeholder="" bindinput='onCustomerChange' placeholder-style='text-align: center;' type='text' />
                 </view>
 
             </view>
@@ -71,6 +71,61 @@
     <view class='orderLayout'>
         <!-- 表头 -->
         <orderInfoItemText class="orderInfoItemStyle" t1="货名" t2="颜色" t3="1" t4="2" t5="3" t6="4" t7="5" t8="6" t9="7" t10="8" t11="9" t12="数量" t13="单价" t14="金额" />
+        <!-- 数据的内容 -->
+        <scroll-view scroll-y="true" class='orderItemScrollView'>
+
+            <block wx:for="{{currOrderDatas}}" wx:key="{{index}}">
+                <orderInfoItemText class="orderInfoItemStyle" catchtap="onOrderItemTap" data-id="{{item.id}}" t1="{{item.name}}" t2="{{item.color}}" t3="{{item.c1}}" t4="{{item.c2}}" t5="{{item.c3}}" t6="{{item.c4}}" t7="{{item.c5}}" t8="{{item.c6}}" t9="{{item.c7}}"
+                    t10="{{item.c8}}" t11="{{item.c9}}" t12="{{item.number}}" t13="{{item.unitPrice}}" t14="{{item.total}}" />
+
+                <view class='divderLightStyle' />
+            </block>
+        </scroll-view>
+
+        <!-- 下面总款统计 -->
+        <view class='totalTable'>
+
+            <view class='totalTableRow'>
+                <view class="totalTableTd" 
+                    style='flex:2;border-right:1rpx solid black;border-bottom:1rpx solid black'>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />    
+                    金额合计大写：<input class='totalInput' 
+                                    data-total-type='bigLetterTotal' 
+                                    value='{{bigLetterTotal}}'
+                                    bindinput='onTotalInfoChange'/>
+                </view>
+
+                <view class="totalTableTd" style='flex:1.2;border-bottom:1rpx solid black'>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />
+                    ¥：<input class='totalInput' 
+                                    type='digit'
+                                    data-total-type='total' 
+                                    value='{{total}}'
+                                    bindinput='onTotalInfoChange'/>
+                </view>
+            </view>
+            <view class='totalTableRow'>
+                <view class="totalTableTd" style='flex:2'>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />
+                    欠款：<input class='totalInput' 
+                                    type='digit'
+                                    data-total-type='prevDebt' 
+                                    value='{{prevDebt}}'
+                                    bindinput='onTotalInfoChange'/>
+                </view>
+
+                <view class="totalTableTd" 
+                    style='flex:1.2;border-left:1rpx solid black;'>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />
+                    累计后欠:<input class='totalInput' 
+                                    type='digit'
+                                    data-total-type='totalDebt' 
+                                    value='{{totalDebt}}'
+                                    bindinput='onTotalInfoChange'/>
+                </view>
+            </view>
+        </view>
+
     </view>
 
 </view>
@@ -78,7 +133,7 @@
 
 <!-- 操作按钮区域 -->
 <view class='btnLayout' style="visibility:{{isShowCanvas? 'hidden':'visible'}}">
-    <button class="btn" plain="true" type="primary" catchtap='save' disabled='{{ isEditOrder || isShowCanvas}}' loading='{{isEditOrder}}'>
+    <button class="btn" plain="true" type="primary" catchtap='add' disabled='{{ isEditOrder || isShowCanvas}}' loading='{{isEditOrder}}'>
         <text class='buttonTv'>新增货品</text>
     </button>
     <button class="btn" plain="true" type="primary" catchtap='preview' disabled='{{isEditOrder || isShowCanvas}}' loading='{{isShowCanvas}}'>
@@ -104,25 +159,40 @@
 
     <!-- 对话框内容 -->
     <view class="modal-content">
-        <orderInfoEditText title="货名" />
-        <orderInfoEditText title="颜色" />
-        <orderInfoEditText inputType="digit" title="1" />
-        <orderInfoEditText inputType="digit" title="2" />
-        <orderInfoEditText inputType="digit" title="3" />
-        <orderInfoEditText inputType="digit" title="4" />
-        <orderInfoEditText inputType="digit" title="5" />
-        <orderInfoEditText inputType="digit" title="6" />
-        <orderInfoEditText inputType="digit" title="7" />
-        <orderInfoEditText inputType="digit" title="8" />
-        <orderInfoEditText inputType="digit" title="9" />
-        <orderInfoEditText inputType="digit" title="数量" />
-        <orderInfoEditText inputType="digit" title="单价" />
-        <orderInfoEditText inputType="digit" title="金额" />
+
+        <orderInfoEditText title="货名" bindchange="onDialogOrderValueChange" key="name" value="{{dialogOrderData.name}}" />
+
+        <orderInfoEditText title="颜色" bindchange="onDialogOrderValueChange" key="color" value="{{dialogOrderData.color}}" />
+
+        <orderInfoEditText inputType="digit" title="单价" bindchange="onDialogOrderValueChange" key="unitPrice" value="{{dialogOrderData.unitPrice}}" />
+
+        <orderInfoEditText inputType="digit" title="1" bindchange="onDialogOrderValueChange" key="c1" value="{{dialogOrderData.c1}}" />
+
+        <orderInfoEditText inputType="digit" title="2" bindchange="onDialogOrderValueChange" key="c2" value="{{dialogOrderData.c2}}" />
+
+        <orderInfoEditText inputType="digit" title="3" bindchange="onDialogOrderValueChange" key="c3" value="{{dialogOrderData.c3}}" />
+
+        <orderInfoEditText inputType="digit" title="4" bindchange="onDialogOrderValueChange" key="c4" value="{{dialogOrderData.c4}}" />
+
+        <orderInfoEditText inputType="digit" title="5" bindchange="onDialogOrderValueChange" key="c5" value="{{dialogOrderData.c5}}" />
+
+        <orderInfoEditText inputType="digit" title="6" bindchange="onDialogOrderValueChange" key="c6" value="{{dialogOrderData.c6}}" />
+
+        <orderInfoEditText inputType="digit" title="7" bindchange="onDialogOrderValueChange" key="c7" value="{{dialogOrderData.c7}}" />
+
+        <orderInfoEditText inputType="digit" title="8" bindchange="onDialogOrderValueChange" key="c8" value="{{dialogOrderData.c8}}" />
+
+        <orderInfoEditText inputType="digit" title="9" bindchange="onDialogOrderValueChange" key="c9" value="{{dialogOrderData.c9}}" />
+
+        <orderInfoEditText inputType="digit" title="数量" bindchange="onDialogOrderValueChange" key="number" value="{{dialogOrderData.number}}" />
+
+        <orderInfoEditText inputType="digit" title="金额" bindchange="onDialogOrderValueChange" key="total" value="{{dialogOrderData.total}}" />
     </view>
 
     <!-- 对话框尾部 -->
     <view class="modal-footer">
         <view class="btn-cancel" bindtap="onDialogCancel" data-status="cancel">取消</view>
+        <view class="btn-cancel" bindtap="onDialogDelete" data-status="cancel" wx:if="{{dialogOrderData.id >= 0}}">删除</view>
         <view class="btn-confirm" bindtap="onDialogConfirm" data-status="confirm">确定</view>
     </view>
 </view>

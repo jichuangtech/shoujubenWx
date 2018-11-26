@@ -8,6 +8,7 @@ Component({
             type: String,
             value: "初始标题"
         },
+
         value: {
             type: String,
             value: "初始内容"
@@ -31,7 +32,7 @@ Component({
         onTitleClick : function(event) {
             console.log(" onTitleClick event: " + JSON.stringify(event));
             var detail = {
-                title: this.properties.title,
+                key: this.properties.key,
                 value: this.properties.value
             };
 

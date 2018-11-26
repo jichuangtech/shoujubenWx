@@ -8,6 +8,12 @@ Component({
             type: String,
             value: "初始标题"
         },
+
+        key: {
+            type: String,
+            value: "key"
+        },
+
         value: {
             type: String,
             value: "初始内容"
@@ -29,6 +35,15 @@ Component({
      * 组件的方法列表
      */
     methods: {
+        onChange: function (e) {
+            console.log(" onChange event: " + JSON.stringify(e))
+            let orderItem = {
+                key: this.properties.key,
+                value: e.detail.value
+            }
+            this.triggerEvent("change", orderItem)
+        }
+    },
 
-    }
+   
 })

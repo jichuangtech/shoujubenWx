@@ -6,36 +6,42 @@ var X = 30;
 var Y = 90;
 var TABLE_MARGIN = 20;
 var MARGIN_TOP_BELOW_DIVIDER = 20;
+var Utils = require("../../utils/util.js");
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        bigLetterTotal: "",
+        total: "",
+        prevDebt: "",
+        totalDebt: "",
+        customerName:"客户名",
+        currOrderDatas: [],
+        dialogOrderData: {},
         showOrderEditModal: false,
-        orderDate:"2018-01-01",
+        orderDate: "2018-01-01",
         orderDateCN: "2018年1月1日",
         isShowCanvas: false,
         isEditOrder: false,
         tableWidth: 0,
-        tableHegiht:0,
-        orderData:[
-            {
+        tableHegiht: 0,
+        orderData: [{
                 name: "Jx12",
                 color: "白色",
                 number: 1,
                 unitPrice: 1.2,
-                total: 100, 
-                o1: "100", o2: "", o3: "", o4: "", o5: "", o6: "", o7: "", o8: "", o9: ""
-             },
-            {
-                name: "Jx13",
-                color: "黄色",
-                number: 1,
-                unitPrice: 1.2,
                 total: 100,
-                o1: "", o2: "200", o3: "300", o4: "400", o5: "500", o6: "", o7: "", o8: "", o9: "",
+                o1: "100",
+                o2: "",
+                o3: "",
+                o4: "",
+                o5: "",
+                o6: "",
+                o7: "",
+                o8: "",
+                o9: ""
             },
             {
                 name: "Jx13",
@@ -43,7 +49,15 @@ Page({
                 number: 1,
                 unitPrice: 1.2,
                 total: 100,
-                o1: "", o2: "200", o3: "300", o4: "400", o5: "500", o6: "", o7: "", o8: "", o9: "",
+                o1: "",
+                o2: "200",
+                o3: "300",
+                o4: "400",
+                o5: "500",
+                o6: "",
+                o7: "",
+                o8: "",
+                o9: "",
             },
             {
                 name: "Jx13",
@@ -51,7 +65,31 @@ Page({
                 number: 1,
                 unitPrice: 1.2,
                 total: 100,
-                o1: "", o2: "200", o3: "300", o4: "400", o5: "500", o6: "", o7: "", o8: "", o9: "",
+                o1: "",
+                o2: "200",
+                o3: "300",
+                o4: "400",
+                o5: "500",
+                o6: "",
+                o7: "",
+                o8: "",
+                o9: "",
+            },
+            {
+                name: "Jx13",
+                color: "黄色",
+                number: 1,
+                unitPrice: 1.2,
+                total: 100,
+                o1: "",
+                o2: "200",
+                o3: "300",
+                o4: "400",
+                o5: "500",
+                o6: "",
+                o7: "",
+                o8: "",
+                o9: "",
             },
         ],
     },
@@ -90,12 +128,12 @@ Page({
         let dateArr = currDate.split('-');
         console.log(" getCurrDateCN : " + dateArr);
 
-        if(dateArr != null && dateArr.length == 3) {
+        if (dateArr != null && dateArr.length == 3) {
             return dateArr[0] + "年" + dateArr[1] + "月" + dateArr[2] + "日";
         } else {
             return this.data.orderData;
         }
-        
+
     },
 
     /**
@@ -115,8 +153,9 @@ Page({
                 });
             }
         });
-        
+
     },
+
     preview: function() {
         let that = this;
 
@@ -125,13 +164,13 @@ Page({
             isShowCanvas: true,
         }, function() {
             //开始绘图
-            that.draw(function () {
+            that.draw(function() {
                 //绘图结束后的回调函数，进行创建图片
                 that.createImagePath();
             });
-        }) 
-        
-        
+        })
+
+
     },
     test: function() {
         wx.showLoading({
@@ -147,15 +186,15 @@ Page({
         const hour = date.getHours(); //获取当前小时数(0-23)
         const minute = date.getMinutes();
         const second = date.getSeconds();
-        const time = year + '.' + month + '.' + day + ' ' + hour + ':' + minute + ':' + second; 
+        const time = year + '.' + month + '.' + day + ' ' + hour + ':' + minute + ':' + second;
 
 
         ctx.save()
-        
+
         //设置图片背景颜色
         ctx.setFillStyle('white')
         ctx.fillRect(0, 0, this.data.tableWidth, this.data.tableHegiht)
-    
+
         ctx.setFontSize(23);
         //【1】设置公司名字
         let y1Offset = 0;
@@ -170,10 +209,10 @@ Page({
         let x2 = X;
         let y2 = Y + 30;
         ctx.fillText('XING HE TEXTILE', x2, y2);
-        
+
         ctx.setFontSize(11);
         //【3】公司信息
-        let x3 = this.data.tableWidth /2;
+        let x3 = this.data.tableWidth / 2;
         let y3 = Y - 10;
         let y3Offset = 16;
         ctx.fillText('地址：广州市珠海区逸景路', x3, y3)
@@ -192,12 +231,12 @@ Page({
         //【4】客户名称
         let x4 = X;
         let y4 = y2 + 55;
-        ctx.fillText('客 户 名 称：陈强', x4, y4)
+        ctx.fillText('客 户 名 称：' + this.data.customerName, x4, y4)
 
         //【5】开单日期
         let x5 = this.data.tableWidth / 3 * 2;
         let y5 = y4;
-        ctx.fillText('2018年 11月 21日', x5, y5)
+        ctx.fillText(this.data.orderDateCN, x5, y5)
 
         //【6】分割线
         let x6 = x4;
@@ -213,14 +252,14 @@ Page({
         let thXOffset = 22;
         let thXCNOffset = thXOffset + 12;
         let thY = y6 + MARGIN_TOP_BELOW_DIVIDER;
-        let th1X = x6 + 5 ;
+        let th1X = x6 + 5;
 
         let th2X = th1X;
         ctx.fillText('货名', th2X, thY)
 
         let th3X = th2X + thXCNOffset;
         ctx.fillText('颜色', th3X, thY)
-        
+
         let th4X = th3X + thXCNOffset;
         ctx.fillText('1', th4X, thY)
 
@@ -260,20 +299,20 @@ Page({
         //【8】动态渲染数据
         let orderDateYOffset = 18;
         let orderDataY = thY;
-        for(let index in this.data.orderData) {
+        for (let index in this.data.currOrderDatas) {
             orderDataY += orderDateYOffset;
-            let order = this.data.orderData[index];
+            let order = this.data.currOrderDatas[index];
             ctx.fillText(order.name, th2X, orderDataY)
             ctx.fillText(order.color, th3X, orderDataY)
-            ctx.fillText(order.o1, th4X, orderDataY)
-            ctx.fillText(order.o2, th5X, orderDataY)
-            ctx.fillText(order.o3, th6X, orderDataY)
-            ctx.fillText(order.o4, th7X, orderDataY)
-            ctx.fillText(order.o5, th8X, orderDataY)
-            ctx.fillText(order.o6, th9X, orderDataY)
-            ctx.fillText(order.o7, th10X, orderDataY)
-            ctx.fillText(order.o8, th11X, orderDataY)
-            ctx.fillText(order.o9, th12X, orderDataY)
+            ctx.fillText(order.c1, th4X, orderDataY)
+            ctx.fillText(order.c2, th5X, orderDataY)
+            ctx.fillText(order.c3, th6X, orderDataY)
+            ctx.fillText(order.c4, th7X, orderDataY)
+            ctx.fillText(order.c5, th8X, orderDataY)
+            ctx.fillText(order.c6, th9X, orderDataY)
+            ctx.fillText(order.c7, th10X, orderDataY)
+            ctx.fillText(order.c8, th11X, orderDataY)
+            ctx.fillText(order.c9, th12X, orderDataY)
             ctx.fillText(order.number, th13X, orderDataY)
             ctx.fillText(order.unitPrice, th14X, orderDataY)
             ctx.fillText(order.total, th15X, orderDataY)
@@ -302,9 +341,9 @@ Page({
         //竖1
         ctx.moveTo(x9_1, y9_1);
         ctx.lineTo(x9_3, y9_3);
-        
+
         //竖2
-        let verticalX2 = this.data.tableWidth / 5 *3;
+        let verticalX2 = this.data.tableWidth / 5 * 3;
         ctx.moveTo(verticalX2, y9_1);
         ctx.lineTo(verticalX2, y9_3);
 
@@ -338,22 +377,26 @@ Page({
         ctx.setLineWidth(1);
         ctx.setShadow(50, 50, 50, 'blue')
         ctx.strokeRect(10, 50, this.data.tableWidth - 20, y9_3)
-        
+
         //最终绘画
         ctx.draw(false, callback);
     },
 
-    save: function() {
+    add: function() {
+        let that = this;
         this.setData({
             showOrderEditModal: true,
-            orderDialogTitle:"新增货品"
+            orderDialogTitle: "新增货品",
+            dialogOrderData: Utils.newOrder(),
         })
     },
 
-    edit: function () {
+    edit: function(id) {
+        this.data.dialogOrderData = Utils.copyOrder(this.data.currOrderDatas[id])
         this.setData({
             showOrderEditModal: true,
-            orderDialogTitle: "修改货品"
+            orderDialogTitle: "修改货品",
+            dialogOrderData: this.data.dialogOrderData
         })
     },
 
@@ -372,7 +415,7 @@ Page({
                     wx.previewImage({
                         current: res.tempFilePath, // 当前显示图片的http链接
                         urls: [res.tempFilePath], // 需要预览的图片http链接列表
-                        complete: function () {
+                        complete: function() {
                             setTimeout(function() {
                                 that.setData({
                                     isShowCanvas: false,
@@ -381,7 +424,7 @@ Page({
                         }
                     })
                 }, 630)
-                
+
             }
         })
     },
@@ -481,22 +524,108 @@ Page({
      */
     onShareAppMessage: function() {
 
-    }, 
+    },
 
-    onDialogCancel :function() {
+    onDialogCancel: function() {
         this.setData({
-            showOrderEditModal: false
+            showOrderEditModal: false,
+        });
+    },
+    onDialogDelete: function() {
+        let id = this.data.dialogOrderData.id;
+        this.data.currOrderDatas.splice(id,1)
+        this.setData({
+            showOrderEditModal: false,
+            currOrderDatas: this.data.currOrderDatas
+        }, function () {
+            console.log(" deleted orderData: " + JSON.stringify(this.data.currOrderDatas))
         });
     },
 
     onDialogConfirm: function() {
         /**
-         *  (1)关闭对话框
-         * （2）保存新数据
+         * （1）保存新数据
+         */
+        if (-1 == this.data.dialogOrderData.id) {
+            console.log(" add order item ...")
+            this.data.dialogOrderData.id = this.data.currOrderDatas.length;
+            this.data.currOrderDatas.push(Utils.copyOrder(this.data.dialogOrderData))
+        } else {
+            //更新数据
+            console.log(" update order item ...")
+            let id = this.data.dialogOrderData.id;
+            this.data.currOrderDatas[id] = Utils.copyOrder(this.data.dialogOrderData)
+        }
+
+        /**
+         * （2）关闭对话框
          */
         this.setData({
-            showOrderEditModal: false
+            showOrderEditModal: false,
+            currOrderDatas: this.data.currOrderDatas
+        }, function() {
+            console.log(" new orderData: " + JSON.stringify(this.data.currOrderDatas))
         });
+    },
+
+    onDialogOrderValueChange: function(option) {
+        console.log(" onDialogOrderValueChange option: " + JSON.stringify(option))
+        let key = option.detail.key
+        let value = option.detail.value
+        this.data.dialogOrderData['' + key] = value
+        this.setData({
+            dialogOrderData: this.data.dialogOrderData
+        }, function() {
+            console.log(" new src: " + JSON.stringify(this.data.dialogOrderData))
+        })
+    },
+    onCustomerChange: function(e) {
+        this.setData({
+            customerName: e.detail.value
+        })
+    },
+
+    onOrderItemTap: function(e) {
+        console.log(" onOrderItemTap data: " + JSON.stringify(e));
+        let id = e.currentTarget.dataset.id;
+        this.edit(id);
+    },
+
+    /**
+     * 底部总计区域变化的时候 回调
+     */
+    onTotalInfoChange: function(e) {
+        let type = e.currentTarget.dataset.totalType;
+        let attrName = "" + type;
+        let value = e.detail.value;
+        console.log(" onTotalInfoChange attrName: " + attrName + ", value: " + value)
+
+        switch(type) {
+    
+            case 'total':
+                console.log(" onTotalInfoChange type total prevDebt: " + this.data.prevDebt)
+                this.setData({
+                    total: value,
+                    totalDebt: this.getTotalDebt(value, this.data.prevDebt),
+                    bigLetterTotal: Utils.DX(value)
+                });
+                break
+
+            case 'prevDebt':
+                console.log(" onTotalInfoChange type prevDebt total: " + this.data.total)
+                this.setData({
+                    prevDebt: value,
+                    totalDebt: this.getTotalDebt(this.data.total, value)
+                });
+                break
+        }
+    },
+
+    getTotalDebt: function(total, prevDebt) {
+        total = total === "" ? 0 : total;
+        prevDebt = prevDebt === "" ? 0 : prevDebt;
+        console.log(" getTotalDebt total: " + total + ", prevDebt: " + prevDebt);
+        return parseInt(total) + parseInt(prevDebt);
     }
 
 
