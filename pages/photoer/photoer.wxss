@@ -181,6 +181,7 @@ page {
 }
 
 .orderItemScrollView {
+    width: 100%;
     height: 60%;
     display: flex;
     flex-direction: column;
@@ -189,7 +190,8 @@ page {
 
 .orderInfoItemStyle{
     width: 95%;
-    margin-bottom: 10rpx
+    margin-bottom: 5rpx;
+    margin-top: 5rpx
 }
 
 

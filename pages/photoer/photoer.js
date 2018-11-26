@@ -17,7 +17,7 @@ Page({
         total: "",
         prevDebt: "",
         totalDebt: "",
-        customerName:"客户名",
+        customerName: "客户名",
         currOrderDatas: [],
         dialogOrderData: {},
         showOrderEditModal: false,
@@ -533,11 +533,22 @@ Page({
     },
     onDialogDelete: function() {
         let id = this.data.dialogOrderData.id;
-        this.data.currOrderDatas.splice(id,1)
+        this.data.currOrderDatas.splice(id, 1);
+
+        let total = 0;
+        for (let index in this.data.currOrderDatas) {
+            let order = this.data.currOrderDatas[index];
+            total += parseFloat(Utils.c2i(order.total));
+        }
+        console.log(" onDialogDelete total: " + total);
+
         this.setData({
             showOrderEditModal: false,
-            currOrderDatas: this.data.currOrderDatas
-        }, function () {
+            currOrderDatas: this.data.currOrderDatas,
+            total: total,
+            totalDebt: this.getTotalDebt(total, this.data.prevDebt),
+            bigLetterTotal: Utils.DX(total)
+        }, function() {
             console.log(" deleted orderData: " + JSON.stringify(this.data.currOrderDatas))
         });
     },
@@ -557,22 +568,58 @@ Page({
             this.data.currOrderDatas[id] = Utils.copyOrder(this.data.dialogOrderData)
         }
 
+        let total = 0;
+        for (let index in this.data.currOrderDatas) {
+            let order = this.data.currOrderDatas[index];
+            total += parseFloat(Utils.c2i(order.total));
+        }
+        console.log(" onDialogConfirm total: " + total);
+
         /**
          * （2）关闭对话框
          */
         this.setData({
             showOrderEditModal: false,
-            currOrderDatas: this.data.currOrderDatas
+            currOrderDatas: this.data.currOrderDatas,
+            total: total,
+            totalDebt: this.getTotalDebt(total, this.data.prevDebt),
+            bigLetterTotal: Utils.DX(total)
         }, function() {
             console.log(" new orderData: " + JSON.stringify(this.data.currOrderDatas))
         });
     },
 
+    refreshDialogTotal: function() {
+        let unitPrice = this.data.dialogOrderData.unitPrice === "" ? 0 : this.data.dialogOrderData.unitPrice;
+        let number = this.data.dialogOrderData.number === "" ? 0 : this.data.dialogOrderData.number;
+        this.data.dialogOrderData.total = parseFloat(unitPrice) * parseFloat(number);
+    },
+
+    refreshDialogNumber: function() {
+        this.data.dialogOrderData.number =
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c1)) +
+        parseFloat(Utils.c2i(this.data.dialogOrderData.c2)) +
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c3)) +
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c4)) +
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c5)) +
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c6)) +
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c7)) +
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c8)) +
+            parseFloat(Utils.c2i(this.data.dialogOrderData.c9));
+        console.log(" refreshDialogNumber number: " + this.data.dialogOrderData.number);
+    },
+
+    /**
+     * 编辑对话框中 输入框的内容变化的时候
+     */
     onDialogOrderValueChange: function(option) {
         console.log(" onDialogOrderValueChange option: " + JSON.stringify(option))
         let key = option.detail.key
         let value = option.detail.value
         this.data.dialogOrderData['' + key] = value
+        console.log(" onDialogOrderValueChange dialogOrderData: " + JSON.stringify(this.data.dialogOrderData))
+        this.refreshDialogNumber();
+        this.refreshDialogTotal();
         this.setData({
             dialogOrderData: this.data.dialogOrderData
         }, function() {
@@ -600,8 +647,8 @@ Page({
         let value = e.detail.value;
         console.log(" onTotalInfoChange attrName: " + attrName + ", value: " + value)
 
-        switch(type) {
-    
+        switch (type) {
+
             case 'total':
                 console.log(" onTotalInfoChange type total prevDebt: " + this.data.prevDebt)
                 this.setData({
@@ -618,6 +665,20 @@ Page({
                     totalDebt: this.getTotalDebt(this.data.total, value)
                 });
                 break
+
+            case 'totalDebt':
+                console.log(" onTotalInfoChange type totalDebt ")
+                this.setData({
+                    totalDebt: value
+                });
+                break;
+
+            case 'bigLetterTotal':
+                console.log(" onTotalInfoChange type bigLetterTotal ")
+                this.setData({
+                    bigLetterTotal: value
+                });
+                break;
         }
     },
 
@@ -625,7 +686,7 @@ Page({
         total = total === "" ? 0 : total;
         prevDebt = prevDebt === "" ? 0 : prevDebt;
         console.log(" getTotalDebt total: " + total + ", prevDebt: " + prevDebt);
-        return parseInt(total) + parseInt(prevDebt);
+        return parseFloat(total) + parseFloat(prevDebt);
     }
 
 
