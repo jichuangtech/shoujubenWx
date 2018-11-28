@@ -40,8 +40,8 @@ function copyOrder(src) {
 function newOrder() {
     return {
         id: -1,
-        name: "dsd",
-        color: "白色",
+        name: "",
+        color: "",
         c1: "",
         c2: "",
         c3: "",
