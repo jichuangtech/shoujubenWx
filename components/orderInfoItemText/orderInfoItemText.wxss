@@ -3,12 +3,16 @@
 .rootView {
     display: flex;
     flex-direction: row;
-    margin-top: 15rpx;
-    justify-content: space-around;
     align-items: center;
 }
 
 .titleText {
+    display: flex;
     font-size: 20rpx;
     text-align: center;
+    width: 7.142857%;
+    flex-wrap:wrap;
+    flex-direction: row;
+    justify-content: center;
+    word-break:break-all;
 }

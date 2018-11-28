@@ -185,13 +185,17 @@ page {
     height: 60%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    
 }
 
 .orderInfoItemStyle{
     width: 95%;
-    margin-bottom: 5rpx;
-    margin-top: 5rpx
+    height: 30rpx;
+    margin-bottom: 10rpx;
+    margin-top: 10rpx;
+    background-color: rgb(133, 133, 187);
 }
 
 
@@ -223,15 +227,7 @@ page {
     display: flex;
     flex-direction: column;
 }
-.modal-footer {
-    display: flex;
-    flex-direction: row;
-    height: 70rpx;
-    line-height: 70rpx;
-    margin-top: 66rpx;
-    padding-bottom: 40rpx;
-    justify-content: space-around;
-}
+
 /* 对话框头部 */
 .modal-header {
     display: flex;
@@ -260,18 +256,25 @@ page {
     text-align: center;
 }
  
-.btn-cancel {
-    width: 50%;
+ .modal-footer {
+    display: flex;
+    flex-direction: row;
+    height: 70rpx;
+    line-height: 70rpx;
+    margin-top: 66rpx;
+    padding-bottom: 40rpx; 
+     justify-content: space-around;
+}
+
+.dialog-btn {
     color: #666;
     text-align: center;
-    margin-right: 36rpx;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex: 1;
 }
  
-.btn-confirm {
-    width: 50%;
-    color: #ec5300;
-    text-align: center;
-}
  
 .case {
     width: 336rpx;

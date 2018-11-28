@@ -179,6 +179,15 @@ function c2i(str) {
     return str === "" || str === undefined ? 0 : str;
 }
 
+/**
+ * 该方法以 iphone6 plus为基准，进行计算其他设备的尺寸大小
+ *  6 plus pixelRatio = 3
+ */
+function getCanvasFontSize(iphone6pSize, nowPixelRatio) {
+    return parseInt(iphone6pSize * nowPixelRatio / 3);
+}
+
+
 module.exports = {
     formatTime: formatTime,
     copyOrder: copyOrder,

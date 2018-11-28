@@ -72,15 +72,18 @@
         <!-- 表头 -->
         <orderInfoItemText class="orderInfoItemStyle" t1="货名" t2="颜色" t3="1" t4="2" t5="3" t6="4" t7="5" t8="6" t9="7" t10="8" t11="9" t12="数量" t13="单价" t14="金额" />
         <!-- 数据的内容 -->
-        <scroll-view scroll-y="true" class='orderItemScrollView'>
-
-            <block wx:for="{{currOrderDatas}}" wx:key="{{index}}">
-                <orderInfoItemText class="orderInfoItemStyle" catchtap="onOrderItemTap" data-id="{{item.id}}" t1="{{item.name}}" t2="{{item.color}}" t3="{{item.c1}}" t4="{{item.c2}}" t5="{{item.c3}}" t6="{{item.c4}}" t7="{{item.c5}}" t8="{{item.c6}}" t9="{{item.c7}}"
+        <!-- <scroll-view scroll-y class='orderItemScrollView'> -->
+            <!-- <view style='height:100%; width:100%'> -->
+            <!-- <block wx:for="{{currOrderDatas}}" wx:key="{{index}}"> -->
+                <orderInfoItemText 
+                wx:for="{{currOrderDatas}}" wx:key="{{index}}"
+                class="orderInfoItemStyle" catchtap="onOrderItemTap" data-id="{{item.id}}" t1="{{item.name}}" t2="{{item.color}}" t3="{{item.c1}}" t4="{{item.c2}}" t5="{{item.c3}}" t6="{{item.c4}}" t7="{{item.c5}}" t8="{{item.c6}}" t9="{{item.c7}}"
                     t10="{{item.c8}}" t11="{{item.c9}}" t12="{{item.number}}" t13="{{item.unitPrice}}" t14="{{item.total}}" />
 
-                <view class='divderLightStyle' />
-            </block>
-        </scroll-view>
+                <!-- <view class='divderLightStyle' /> -->
+            <!-- </block> -->
+            <!-- </view> -->
+        <!-- </scroll-view> -->
 
         <!-- 下面总款统计 -->
         <view class='totalTable'>
@@ -191,8 +194,8 @@
 
     <!-- 对话框尾部 -->
     <view class="modal-footer">
-        <view class="btn-cancel" bindtap="onDialogCancel" data-status="cancel">取消</view>
-        <view class="btn-cancel" bindtap="onDialogDelete" data-status="cancel" wx:if="{{dialogOrderData.id >= 0}}">删除</view>
-        <view class="btn-confirm" bindtap="onDialogConfirm" data-status="confirm">确定</view>
+        <view class="dialog-btn" bindtap="onDialogCancel" data-status="cancel">取消</view>
+        <view class="dialog-btn" bindtap="onDialogDelete" data-status="cancel" wx:if="{{dialogOrderData.id >= 0}}">删除</view>
+        <view class="dialog-btn" bindtap="onDialogConfirm" data-status="confirm">确定</view>
     </view>
 </view>
