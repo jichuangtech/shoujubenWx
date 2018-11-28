@@ -72,59 +72,40 @@
         <!-- 表头 -->
         <orderInfoItemText class="orderInfoItemStyle" t1="货名" t2="颜色" t3="1" t4="2" t5="3" t6="4" t7="5" t8="6" t9="7" t10="8" t11="9" t12="数量" t13="单价" t14="金额" />
         <!-- 数据的内容 -->
-        <!-- <scroll-view scroll-y class='orderItemScrollView'> -->
-            <!-- <view style='height:100%; width:100%'> -->
-            <!-- <block wx:for="{{currOrderDatas}}" wx:key="{{index}}"> -->
-                <orderInfoItemText 
-                wx:for="{{currOrderDatas}}" wx:key="{{index}}"
-                class="orderInfoItemStyle" catchtap="onOrderItemTap" data-id="{{item.id}}" t1="{{item.name}}" t2="{{item.color}}" t3="{{item.c1}}" t4="{{item.c2}}" t5="{{item.c3}}" t6="{{item.c4}}" t7="{{item.c5}}" t8="{{item.c6}}" t9="{{item.c7}}"
-                    t10="{{item.c8}}" t11="{{item.c9}}" t12="{{item.number}}" t13="{{item.unitPrice}}" t14="{{item.total}}" />
+        <scroll-view scroll-y class='orderItemScrollView'>
+            <view class='orderItemScrollRootView'>
+                <block wx:for="{{currOrderDatas}}" wx:key="{{index}}">
+                    <orderInfoItemText class="orderInfoItemStyle" catchtap="onOrderItemTap" data-id="{{item.id}}" t1="{{item.name}}" t2="{{item.color}}" t3="{{item.c1}}" t4="{{item.c2}}" t5="{{item.c3}}" t6="{{item.c4}}" t7="{{item.c5}}" t8="{{item.c6}}" t9="{{item.c7}}"
+                        t10="{{item.c8}}" t11="{{item.c9}}" t12="{{item.number}}" t13="{{item.unitPrice}}" t14="{{item.total}}" />
+                    <view class='divderLightStyle' />
+                </block>
+            </view>
 
-                <!-- <view class='divderLightStyle' /> -->
-            <!-- </block> -->
-            <!-- </view> -->
-        <!-- </scroll-view> -->
+        </scroll-view>
 
         <!-- 下面总款统计 -->
         <view class='totalTable'>
 
             <view class='totalTableRow'>
-                <view class="totalTableTd" 
-                    style='flex:2;border-right:1px solid black;border-bottom:1px solid black'>
-                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />    
-                    金额合计大写：<input class='totalInput' 
-                                    data-total-type='bigLetterTotal' 
-                                    value='{{bigLetterTotal}}'
-                                    bindinput='onTotalInfoChange'/>
+                <view class="totalTableTd" style='flex:2;border-right:1px solid black;border-bottom:1px solid black'>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" /> 金额合计大写：
+                    <input class='totalInput' data-total-type='bigLetterTotal' value='{{bigLetterTotal}}' bindinput='onTotalInfoChange' />
                 </view>
 
                 <view class="totalTableTd" style='flex:1.2;border-bottom:1px solid black'>
-                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />
-                    ¥：<input class='totalInput' 
-                                    type='digit'
-                                    data-total-type='total' 
-                                    value='{{total}}'
-                                    bindinput='onTotalInfoChange'/>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" /> ¥：
+                    <input class='totalInput' type='digit' data-total-type='total' value='{{total}}' bindinput='onTotalInfoChange' />
                 </view>
             </view>
             <view class='totalTableRow'>
                 <view class="totalTableTd" style='flex:2'>
-                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />
-                    欠款：<input class='totalInput' 
-                                    type='digit'
-                                    data-total-type='prevDebt' 
-                                    value='{{prevDebt}}'
-                                    bindinput='onTotalInfoChange'/>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" /> 欠款：
+                    <input class='totalInput' type='digit' data-total-type='prevDebt' value='{{prevDebt}}' bindinput='onTotalInfoChange' />
                 </view>
 
-                <view class="totalTableTd" 
-                    style='flex:1.2;border-left:1px solid black;'>
-                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" />
-                    累计后欠:<input class='totalInput' 
-                                    type='digit'
-                                    data-total-type='totalDebt' 
-                                    value='{{totalDebt}}'
-                                    bindinput='onTotalInfoChange'/>
+                <view class="totalTableTd" style='flex:1.2;border-left:1px solid black;'>
+                    <icon class='totalIcon' type="warn" size="10" color="rgb(26,172,25)" /> 累计后欠:
+                    <input class='totalInput' type='digit' data-total-type='totalDebt' value='{{totalDebt}}' bindinput='onTotalInfoChange' />
                 </view>
             </view>
         </view>
