@@ -194,8 +194,8 @@
 
     <!-- 对话框尾部 -->
     <view class="modal-footer">
-        <view class="dialog-btn" bindtap="onDialogCancel" data-status="cancel">取消</view>
-        <view class="dialog-btn" bindtap="onDialogDelete" data-status="cancel" wx:if="{{dialogOrderData.id >= 0}}">删除</view>
-        <view class="dialog-btn" bindtap="onDialogConfirm" data-status="confirm">确定</view>
+        <view bindtap="onDialogCancel" data-status="cancel">取消</view>
+        <view bindtap="onDialogDelete" data-status="cancel" wx:if="{{dialogOrderData.id >= 0}}">删除</view>
+        <view bindtap="onDialogConfirm" data-status="confirm">确定</view>
     </view>
 </view>

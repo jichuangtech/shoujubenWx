@@ -215,6 +215,8 @@ page {
 }
  
 .modal-dialog {
+    display: flex;
+    flex-direction: column;
     width: 92%;
     overflow: hidden;
     position: fixed;
@@ -224,8 +226,6 @@ page {
     z-index: 9999;
     background: #f9f9f9;
     border-radius: 20rpx;
-    display: flex;
-    flex-direction: column;
 }
 
 /* 对话框头部 */
@@ -245,7 +245,7 @@ page {
 }
  
 .modal-footer view {
-    width: 212rpx;
+    width: 180rpx;
     background: #1AAC19;
     color: #fff;
     font-size: 36rpx;
@@ -261,20 +261,10 @@ page {
     flex-direction: row;
     height: 70rpx;
     line-height: 70rpx;
-    margin-top: 66rpx;
-    padding-bottom: 40rpx; 
-     justify-content: space-around;
+    margin-top: 30rpx;
+    padding-bottom: 20rpx; 
+    justify-content: space-around;
 }
-
-.dialog-btn {
-    color: #666;
-    text-align: center;
-    margin-left: 5%;
-    margin-right: 5%;
-    display: flex;
-    flex: 1;
-}
- 
  
 .case {
     width: 336rpx;
