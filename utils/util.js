@@ -183,8 +183,10 @@ function c2i(str) {
  * 该方法以 iphone6 plus为基准，进行计算其他设备的尺寸大小
  *  6 plus pixelRatio = 3
  */
-function getCanvasFontSize(iphone6pSize, nowPixelRatio) {
-    return parseInt(iphone6pSize * nowPixelRatio / 3);
+const iphone6PlusWidth = 414;
+
+function getCanvasFontSize(iphone6pSize, windowWidth) {
+    return iphone6pSize * windowWidth / iphone6PlusWidth;
 }
 
 
@@ -194,5 +196,6 @@ module.exports = {
     newOrder: newOrder,
     Arabia_To_SimplifiedChinese: Arabia_To_SimplifiedChinese,
     DX: DX,
-    c2i: c2i
+    c2i: c2i,
+    getCanvasFontSize: getCanvasFontSize
 }
