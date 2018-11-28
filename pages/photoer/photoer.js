@@ -2,7 +2,7 @@
 
 var savedImagePath = "";
 var titleHeight = 100;
-var X = 30;
+var X = 20;
 var Y = 90;
 var TABLE_MARGIN = 20;
 var MARGIN_TOP_BELOW_DIVIDER = 20;
@@ -145,9 +145,11 @@ Page({
         wx.getSystemInfo({
             success: function(res) {
                 console.log(" 屏幕信息: " + JSON.stringify(res))
+                X = Utils.getCanvasFontSize(X, res.windowWidth)
                 that.setData({
                     tableWidth: res.windowWidth,
-                    tableHegiht: res.screenHeight,
+                    tableHegiht: res.windowHeight,
+                    pixelRatio: res.pixelRatio,
                     orderDate: orderDate,
                     orderDateCN: that.getCurrDateCN(orderDate)
                 });
@@ -249,7 +251,7 @@ Page({
 
         ctx.setFontSize(11);
         //【7】开始写表头
-        let thXOffset = 22;
+        let thXOffset = Utils.getCanvasFontSize(22, this.data.tableWidth);
         let thXCNOffset = thXOffset + 12;
         let thY = y6 + MARGIN_TOP_BELOW_DIVIDER;
         let th1X = x6 + 5;
