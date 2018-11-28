@@ -1,5 +1,5 @@
 // pages/photoer/photoer.js
-
+var app = getApp();
 var savedImagePath = "";
 var titleHeight = 100;
 var X = 20;
@@ -142,6 +142,7 @@ Page({
     onReady: function() {
         var that = this;
         let orderDate = that.initCurrDate();
+        console.log(" onReady  sfversion: " + app.globalData.softversion);
         wx.getSystemInfo({
             success: function(res) {
                 console.log(" 屏幕信息: " + JSON.stringify(res))
@@ -323,7 +324,7 @@ Page({
         //【9】画底部的表格
         let TR_HEIGHT = 30;
         let x9_1 = x4;
-        let y9_1 = orderDataY + 80;
+        let y9_1 = orderDataY + 30;
         let x9_1Dist = this.data.tableWidth - TABLE_MARGIN;
         ctx.moveTo(x9_1, y9_1);
         ctx.lineTo(x9_1Dist, y9_1);
@@ -379,6 +380,9 @@ Page({
         ctx.setLineWidth(1);
         ctx.setShadow(50, 50, 50, 'blue')
         ctx.strokeRect(10, 50, this.data.tableWidth - 20, y9_3)
+
+        // 【13】右下角书写版本号
+        ctx.fillText("" + app.globalData.softversion, x9_1, 30)
 
         //最终绘画
         ctx.draw(false, callback);
