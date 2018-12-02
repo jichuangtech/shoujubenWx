@@ -189,6 +189,25 @@ function getCanvasFontSize(iphone6pSize, windowWidth) {
     return iphone6pSize * windowWidth / iphone6PlusWidth;
 }
 
+/**
+ * 将小数点后两位存在0的位去除掉
+ */
+function convertDecimalPart(src) {
+    let result = "" + src;
+    let lastPart = result.charAt(result.length -1);
+    let last2Part = result.charAt(result.length - 2);
+    let pointIndex = result.indexOf(".");
+        
+
+    if("0" === lastPart && "0" === last2Part) {
+        result = result.substring(0, pointIndex);
+    } else if ("0" === lastPart) {
+        result = result.substring(0, result.length - 1);
+    }
+    console.log(" convertDecimalPart srtSrc: " + src + ", srtSrc.length: " + src.length + ", pointIndex: " + pointIndex + ", lastPart: " + lastPart + ", last2Part: " + last2Part + ", result: " + result);
+    return result;
+}
+
 
 module.exports = {
     formatTime: formatTime,
@@ -197,5 +216,6 @@ module.exports = {
     Arabia_To_SimplifiedChinese: Arabia_To_SimplifiedChinese,
     DX: DX,
     c2i: c2i,
-    getCanvasFontSize: getCanvasFontSize
+    getCanvasFontSize: getCanvasFontSize,
+    convertDecimalPart: convertDecimalPart
 }
