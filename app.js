@@ -44,7 +44,7 @@ App({
     },
 
     globalData: {
-        softversion:"v1.0.0.1",
+        softversion:"v1.0.0.2",
         servicePhone: "17750224350",
     },
 })
