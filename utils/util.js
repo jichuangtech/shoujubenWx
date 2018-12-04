@@ -195,16 +195,13 @@ function getCanvasFontSize(iphone6pSize, windowWidth) {
 function convertDecimalPart(src) {
     let result = "" + src;
     let lastPart = result.charAt(result.length -1);
-    let last2Part = result.charAt(result.length - 2);
     let pointIndex = result.indexOf(".");
         
 
-    if("0" === lastPart && "0" === last2Part) {
+    if ("0" === lastPart) {
         result = result.substring(0, pointIndex);
-    } else if ("0" === lastPart) {
-        result = result.substring(0, result.length - 1);
     }
-    console.log(" convertDecimalPart srtSrc: " + src + ", srtSrc.length: " + src.length + ", pointIndex: " + pointIndex + ", lastPart: " + lastPart + ", last2Part: " + last2Part + ", result: " + result);
+    console.log(" convertDecimalPart srtSrc: " + src + ", srtSrc.length: " + src.length + ", pointIndex: " + pointIndex + ", lastPart: " + lastPart + ", result: " + result);
     return result;
 }
 

@@ -579,7 +579,7 @@ Page({
             let order = this.data.currOrderDatas[index];
             total += parseFloat(Utils.c2i(order.total));            
         }
-        // total = Utils.convertDecimalPart(total);
+        total = Utils.convertDecimalPart(total);
         console.log(" onDialogConfirm total: " + total);
 
         /**
@@ -599,8 +599,7 @@ Page({
     refreshDialogTotal: function() {
         let unitPrice = this.data.dialogOrderData.unitPrice === "" ? 0 : this.data.dialogOrderData.unitPrice;
         let number = this.data.dialogOrderData.number === "" ? 0 : this.data.dialogOrderData.number;
-        this.data.dialogOrderData.total = (unitPrice * number).toFixed(2);
-        this.data.dialogOrderData.total = Utils.convertDecimalPart(this.data.dialogOrderData.total);
+        this.data.dialogOrderData.total = (unitPrice * number).toFixed(0);
         console.log(" refreshDialogTotal number type: " + typeof number);
         console.log(" refreshDialogTotal unitPrice: " + unitPrice + ", number: " + number + ", total: " + this.data.dialogOrderData.total);
     },
@@ -616,6 +615,8 @@ Page({
             parseFloat(Utils.c2i(this.data.dialogOrderData.c7)) +
             parseFloat(Utils.c2i(this.data.dialogOrderData.c8)) +
             parseFloat(Utils.c2i(this.data.dialogOrderData.c9));
+
+        this.data.dialogOrderData.totnumberal = Utils.convertDecimalPart(this.data.dialogOrderData.number.toFixed(1));
         console.log(" refreshDialogNumber number: " + this.data.dialogOrderData.number);
     },
 
@@ -696,7 +697,7 @@ Page({
         total = total === "" ? 0 : total;
         prevDebt = prevDebt === "" ? 0 : prevDebt;
         console.log(" getTotalDebt total: " + total + ", prevDebt: " + prevDebt);
-        return parseFloat(total) + parseFloat(prevDebt);
+        return (parseFloat(total) + parseFloat(prevDebt)).toFixed(0);
     }
 
 
